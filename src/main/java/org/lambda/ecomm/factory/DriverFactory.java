@@ -6,13 +6,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.lambda.ecomm.exception.FrameworkException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.safari.SafariDriver;
 import org.aspectj.util.FileUtil;
 
@@ -22,9 +22,7 @@ public class DriverFactory {
     public WebDriver driver;
     public Properties prop;
     public OptionsManager optionsManager;
-
     public static String highlight;
-
     public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<WebDriver>();
 
     /**
@@ -34,36 +32,22 @@ public class DriverFactory {
      */
     public WebDriver initDriver(Properties prop) {
 
-         optionsManager = new OptionsManager(prop);
+        optionsManager = new OptionsManager(prop);
 
         highlight = prop.getProperty("highlight").trim();
         String browserName = prop.getProperty("browser").toLowerCase().trim();
-        //String browserName = system.getProperty("browser");
 
         System.out.println("browser name is : " + browserName);
         if (browserName.equalsIgnoreCase("chrome")) {
-            // driver = new ChromeDriver(optionsManager.getChromeOptions());
             tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
-        }
-
-        else if (browserName.equalsIgnoreCase("firefox")) {
-            // driver = new FirefoxDriver(optionsManager.getFirefoxOptions());
+        } else if (browserName.equalsIgnoreCase("firefox")) {
             tlDriver.set(new FirefoxDriver(optionsManager.getFireFoxOptions()));
-        }
-
-        else if (browserName.equalsIgnoreCase("safari")) {
-            // driver = new SafariDriver();
+        } else if (browserName.equalsIgnoreCase("safari")) {
             tlDriver.set(new SafariDriver());
-        }
-
-        else if (browserName.equalsIgnoreCase("edge")) {
-            // driver = new EdgeDriver(optionsManager.getEdgeOptions());
+        } else if (browserName.equalsIgnoreCase("edge")) {
             tlDriver.set(new EdgeDriver(optionsManager.getEdgeOptions()));
-        }
-
-        else {
-            System.out.println("plz pass the right browser...." + browserName);
-           // throw new FrameworkException("NO BROWSER FOUND EXCEPTION....");
+        } else {
+            throw new FrameworkException("NO BROWSER FOUND EXCEPTION....");
         }
 
         getDriver().manage().deleteAllCookies();
@@ -115,8 +99,7 @@ public class DriverFactory {
 
                     default:
                         System.out.println("....Wrong env is passed....No need to run the test cases....");
-                      //  throw new FrameworkException("WRONG ENV IS PASSED...");
-                        break;
+                        throw new FrameworkException("WRONG ENV IS PASSED...");
                 }
 
             }
