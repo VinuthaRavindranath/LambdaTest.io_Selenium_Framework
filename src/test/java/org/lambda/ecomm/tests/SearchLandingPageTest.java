@@ -68,7 +68,7 @@ public class SearchLandingPageTest extends BaseTest {
     @DataProvider
     public Object[][] getManufacturerData() {
         return new Object[][]{
-                {"HTC","AHTC"}
+                {"HTC","HTC"}
         };
     }
 }
