@@ -80,7 +80,7 @@ public class DriverFactory {
 
         try {
             if (envName == null) {
-                System.out.println("no env is passed....Running tests on QA env...");
+                System.out.println("no env is passed....Running tests on Staging env...");
                 ip = new FileInputStream("./src/test/resources/config/staging.config.properties");
             } else {
                 switch (envName.toLowerCase().trim()) {
