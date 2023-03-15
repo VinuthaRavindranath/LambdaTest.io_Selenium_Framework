@@ -36,7 +36,7 @@ pipeline
         stage('Regression Automation Test') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    git 'https://github.com/naveenanimation20/Nov2022POMSeriesCode.git'
+                    git 'https://github.com/VinuthaRavindranath/LambdaTest.io_Selenium_Framework'
                     sh "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_regression.xml"
 
                 }
@@ -80,9 +80,8 @@ pipeline
         stage('Sanity Automation Test') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    git 'https://github.com/naveenanimation20/Nov2022POMSeriesCode.git'
+                    git 'https://github.com/VinuthaRavindranath/LambdaTest.io_Selenium_Framework'
                     sh "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testrunners/testng_sanity.xml"
-
                 }
             }
         }
