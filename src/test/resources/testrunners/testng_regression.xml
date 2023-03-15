@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="LambdaTest.io Project suite" verbose="5">
+    <listeners>
+        <listener class-name="org.lambda.ecomm.listeners.ExtentReportListener"/>
+        <listener class-name="org.lambda.ecomm.listeners.AllureListener"/>
+        <listener class-name="org.lambda.ecomm.listeners.AnnotationTransformer"/>
+    </listeners>
+    <test name="Search Landing Page Test">
+        <classes>
+            <class name="org.lambda.ecomm.tests.SearchLandingPageTest">
+            </class>
+        </classes>
+    </test>
+        <test name="Home Page And Category Navigation Test">
+            <classes>
+                <class name="org.lambda.ecomm.tests.HomePageAndNavigationTest">
+                </class>
+            </classes>
+        </test>
+        <test name="User Login And Forgot Password Test">
+            <classes>
+                <class name="org.lambda.ecomm.tests.UserLoginTest">
+                </class>
+            </classes>
+        </test>
+        <test name="Product Description Page And AddToCart Test">
+            <classes>
+                <class name="org.lambda.ecomm.tests.ProductInfoPageAndAddToCartTest">
+                </class>
+            </classes>
+        </test>
+        <test name="User Registration Test">
+            <classes>
+                <class name="org.lambda.ecomm.tests.UserRegistrationTest">
+                </class>
+            </classes>
+        </test>
+</suite>
